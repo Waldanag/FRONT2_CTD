@@ -6,7 +6,7 @@
 
 function pedirJugada() {
     // empezamos con la variable eleccion en 0
-
+    // Hola Waltito
 }
 
 /* -------------------------------------------------------------------------- */

@@ -35,10 +35,29 @@ cambiarTema.addEventListener("click", alternarColorTema);
 
 function obtenerDatosDelUsuario() {
   /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
- 
 
+let validacionNombre = "";
+do {
+  datosPersona.nombre = prompt(validacionNombre + "\n Ingresa tu nombre");
+  validacionNombre = esNombreValido(datosPersona.nombre);
+} while (validacionNombre !== true);
 
+/*const y = new Date().getFullYear();
+datosPersona.edad = y - parseInt( prompt("Ingresa tu año de nacimiento") );
+datosPersona.ciudad = prompt("Ingresa tu Ciudad");
+datosPersona.interesPorJs = confirm("Tiene interes por Javascript?");*/
 }
+
+function esNombreValido (nombre) {
+  if (nombre.length < 3 && isNaN(nombre)) {
+    return "Error, no es un nombre valido";
+  }
+  return true;
+}
+
+console.log(datosPersona);
+obtenerDatosDelUsuario()
+
 
 function renderizarDatosUsuario() {
   /* ------------------- NO TOCAR NI ELIMINAR ESTA FUNCION. ------------------- */

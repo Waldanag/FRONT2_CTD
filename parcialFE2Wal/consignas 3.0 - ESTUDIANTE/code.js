@@ -102,18 +102,29 @@ function renderizarDatosUsuario() {
 
 function recorrerListadoYRenderizarTarjetas() {
   /* ------------------ PUNTO 3: Escribe tu codigo desde aqui ------------------ */
-  
-
-
+  const contenedorMaterias = document.getElementById("fila");
+  if (contenedorMaterias.innerHTML === "") {
+    listado.forEach(materia => {
+      contenedorMaterias.innerHTML += `
+      <div class="caja">
+        <img src="${materia.imgUrl}" alt="${materia.lenguajes}">
+        <p class="lenguajes">Lenguajes: ${materia.lenguajes}</p>
+        <p class="bimestre">Bimestre: ${materia.bimestre}</p>
+      </div>
+      `
+    });
+  }
 }
 
 function alternarColorTema() {
   /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
- 
-  
-
+  const sitioElement = document.getElementById("sitio");
+  sitio.classList.toggle("dark");
 
 }
 
 /* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
-
+const ocultoElemento = document.querySelector(".oculto");
+let tecleSeleccionada = document.addEventListener("keydown", e => {
+  ocultoElemento.classList.remove("oculto");
+});

@@ -35,7 +35,6 @@ cambiarTema.addEventListener("click", alternarColorTema);
 
 function obtenerDatosDelUsuario() {
   /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
-
 let validacionTexto = "";
 do {
   datosPersona.nombre = prompt(validacionTexto + "\n Ingresa tu nombre").toLowerCase();
@@ -70,7 +69,6 @@ function esTextoValido (texto) {
   return "Error, no es un dato valido";
 }
 const y = new Date().getFullYear();
-
 function esAnioValido(anio) {
   if (!isNaN(anio) && anio < y && anio > 1900) {
     return true;
@@ -78,18 +76,12 @@ function esAnioValido(anio) {
   return "Error, el formato del año debe ser con 4 números";
 }
 
-
 function renderizarDatosUsuario() {
   /* ------------------- NO TOCAR NI ELIMINAR ESTA FUNCION. ------------------- */
   obtenerDatosDelUsuario();
   /* --------------- PUNTO 2: Escribe tu codigo a partir de aqui --------------- */
-  console.log(datosPersona);
-  let nombres = datosPersona.nombre.split(" ");
-  usuario = nombres.map((nombre) => nombre.charAt(0).toUpperCase() + nombre.slice(1));
-
-  let ciudad = datosPersona.ciudad.split(" ");
-  nombreCiudad = ciudad.map((ciudad) => ciudad.charAt(0).toUpperCase() + ciudad.slice(1));
-
+  const usuario = datosPersona.nombre.split(" ").map(capitalizarPrimeraLetra);
+  const nombreCiudad = datosPersona.ciudad.split(" ").map(capitalizarPrimeraLetra);
   const cardPersonalInfo = document.querySelector(".card-header");
   cardPersonalInfo.innerHTML = `
     <h3>Nombre: <span id="nombre">${usuario.join(" ")}</span></h3>
@@ -98,11 +90,12 @@ function renderizarDatosUsuario() {
     <h3>Interes en Javascript: <span id="javascript">${datosPersona.interesPorJs ? "Si" : "No"}</span></h3>
   `;
 }
-
+function capitalizarPrimeraLetra(texto) {
+  return texto.charAt(0).toUpperCase() + texto.slice(1);
+}
 
 function recorrerListadoYRenderizarTarjetas() {
   /* ------------------ PUNTO 3: Escribe tu codigo desde aqui ------------------ */
-  const contenedorMaterias = document.getElementById("fila");
   if (contenedorMaterias.innerHTML === "") {
     listado.forEach(materia => {
       contenedorMaterias.innerHTML += `
@@ -115,16 +108,20 @@ function recorrerListadoYRenderizarTarjetas() {
     });
   }
 }
+const contenedorMaterias = document.getElementById("fila");
 
 function alternarColorTema() {
   /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
-  const sitioElement = document.getElementById("sitio");
-  sitio.classList.toggle("dark");
-
+  const sitioElemento = document.getElementById("sitio");
+  sitioElemento.classList.toggle("dark");
 }
 
 /* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
 const ocultoElemento = document.querySelector(".oculto");
 let tecleSeleccionada = document.addEventListener("keydown", e => {
-  ocultoElemento.classList.remove("oculto");
+  const teclaPresionada = e.key.toLowerCase();
+  console.log(teclaPresionada);
+  if (teclaPresionada == "f") {
+    ocultoElemento.classList.remove("oculto");  
+  }
 });

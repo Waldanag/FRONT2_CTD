@@ -120,7 +120,6 @@ function alternarColorTema() {
 const ocultoElemento = document.querySelector(".oculto");
 let tecleSeleccionada = document.addEventListener("keydown", e => {
   const teclaPresionada = e.key.toLowerCase();
-  console.log(teclaPresionada);
   if (teclaPresionada == "f") {
     ocultoElemento.classList.remove("oculto");  
   }

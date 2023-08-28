@@ -20,7 +20,6 @@ function capturarDatosFormulario() {
     const hobbies = document.querySelector("[name=hobbies]");
     // Fieldset de listado-nacionalidad
     const nacionalidad = document.querySelector("[name=nacionalidad]");
-    console.log(nacionalidad);
 
     // Rellenar el objeto informacion con la info correspondiente
     // Form de datos
@@ -28,69 +27,24 @@ function capturarDatosFormulario() {
     objetoInformacion.password = pass.value;
     objetoInformacion.telefono = tel.value;
 
-    hobbies.forEach((hobbie) => {
-        if (hobbie.checked) {
-            objetoInformacion.hobbies.push(hobbie.id);
+    for (let i = 0; i < hobbies.length; i++) {
+        if (hobbies[i].checked) {
+            objetoInformacion.hobbies.push(hobbies[i].id);
         }
-    });
+    };
 
-    nacionalidad.forEach((nacion) => {
-        if (nacion.checked) {
-            objetoInformacion.nacionalidad = hobbie.id;
+    for (let i = 0; i < nacionalidad.length; i++) {
+        if (nacionalidad[i].checked) {
+            objetoInformacion.nacionalidad = nacionalidad[i].id;
+            break; // Si solo se puede seleccionar una nacionalidad, podemos detener el ciclo después de encontrar una seleccionada
         }
-    });
+    }
     
     return objetoInformacion
-    
-    /*const objetoInformacion = {
-        nombre: "",
-        password: "",
-        telefono: "",
-        hobies: [],
-        nacionalidad: "",
-    }
-
-    // capturamos todos los nodos
-    // Fieldset Datos
-    const nom = document.querySelector("#nom")
-    const pass = document.querySelector("#pass")
-    const tel = document.querySelector("#tel")
-
-    //fieldset listado-hobbies
-    const hobbies = document.querySelectorAll("[name=hobbies]")
-
-    //fieldset pais de nacimiento
-    const nacionalidad = document.querySelectorAll("[name=nacionalidad]")
-    console.log(nacionalidad);
-
-    // rellenamos el objeto con la info correspondiente \
-    objetoInformacion.nacionalidad = nom.value
-    objetoInformacion.password = pass.value
-    objetoInformacion.telefono = tel.value
-
-
-    // recorremos los checkbox para ver cual es el elemento checkeado en la lista de nodos de hobbies
-    hobbies.forEach(function (hobbie) {
-        // nacionalidad seleccionada es la que se guarda en el objeto
-        if (hobbie.checked) {
-            console.log(hobbie.checked);
-            // de este modo guardamos en el array de la propiedad objetoInformacion.hobies
-            objetoInformacion.hobies.push(hobbie.id)
-        }
-    })
-    // recorremos los radius para ver cual es el elemento checkeado
-    nacionalidad.forEach(function (nacion) {
-        // nacionalidad seleccionada es la que se guarda en el objeto
-        if (nacion.checked) {
-            console.log(nacion.checked);
-            // de este modo guardamos en el array de la propiedad objetoInformacion.hobies
-            objetoInformacion.nacionalidad = nacion.id
-        }
-    })
-
-    return objetoInformacion*/
-
+    console.log(objetoInformacion);
+    console.log(objetoInformacion.hobbies);
 }
+capturarDatosFormulario();
 
 /* -------------------------------------------------------------------------- */
 /*                 [2] FUNCION: escuchamos el submit del form                 */

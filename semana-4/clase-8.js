@@ -41,10 +41,7 @@ function capturarDatosFormulario() {
     }
     
     return objetoInformacion
-    console.log(objetoInformacion);
-    console.log(objetoInformacion.hobbies);
 }
-capturarDatosFormulario();
 
 /* -------------------------------------------------------------------------- */
 /*                 [2] FUNCION: escuchamos el submit del form                 */
@@ -58,14 +55,44 @@ form.addEventListener("submit", ev => {
     const datos = capturarDatosFormulario();
     console.log(datos);
 
+    // Almacenamos los errores
+    const errores = validarInformacion(datos);
+    console.log("Errores " + errores);
+
+    // Renderizar un span de errores
+    renderizarErrores(errores);
+
+    // Renderizar un span de exito
+
 })
 
 
+/* -------------------------------------------------------------------------- */
+/*                       [3] FUNCION: renderizar errores                      */
+/* -------------------------------------------------------------------------- */
+// Desarrollamos esta funcion para llamarla en el submit
+function renderizarErrores(listado) {
+    const cajaErrores = document.querySelector("#errores");
 
+    // Si ya existe la caja de errores, debemos eliminar la caja del DOM
+    if (cajaErrores) {
+        cajaErrores.remove();
+    }
+
+    if (listado.length > 0) {
+        const divTemplate = document.createElement("div");
+        divTemplate.setAttribute("id", "errores");
+        divTemplate.style = "background:rgba(255, 0, 0, 0.2);padding:.5em 1em;color: red;margin: .5em 0;";
+        listado.forEach(error => {
+            divTemplate.innerHTML += `<p><spam>${error}</spam></p>`;
+        });
+        form.appendChild(divTemplate);
+    }
+}
 
 /* ----------------------------- MESA DE TRABAJO ---------------------------- */
 /* -------------------------------------------------------------------------- */
-/*                         [3] FUNCION: validar datos                         */
+/*                         [4] FUNCION: validar datos                         */
 /* -------------------------------------------------------------------------- */
 // Desarrollar la funcion 3 de validar los datos.
 // Esta funcion va a recibir un objeto con la misma estructura de obejetoInformacion

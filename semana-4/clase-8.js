@@ -27,7 +27,7 @@ function capturarDatosFormulario() {
     objetoInformacion.password = pass.value;
     objetoInformacion.telefono = tel.value;
 
-    for (let i = 0; i < hobbies.length; i++) {
+    /*for (let i = 0; i < hobbies.length; i++) {
         if (hobbies[i].checked) {
             objetoInformacion.hobbies.push(hobbies[i].id);
         }
@@ -38,7 +38,23 @@ function capturarDatosFormulario() {
             objetoInformacion.nacionalidad = nacionalidad[i].id;
             break; // Si solo se puede seleccionar una nacionalidad, podemos detener el ciclo después de encontrar una seleccionada
         }
-    }
+    }*/
+    // Recorrer el la lista de checkbox para selecionar los que tengan la propiedad checked en true
+    hobbies.forEach(function (hobbie) {
+        if (hobbie.checked) {
+            // Cada hobbie seleccionado lo sumamos al listado de hobbies
+            objetoInformacion.hobbies.push(hobbie.id)
+        }
+    })
+
+    // Recorrer el la lista de radio button este selecciona siun elemento
+    nacionalidad.forEach(function (nacion) {
+        if (nacion.checked) {
+            // Cada hobbie seleccionado lo sumamos al listado de hobbies
+            objetoInformacion.nacionalidad = nacion.id
+        }
+    })
+
     
     return objetoInformacion
 }
